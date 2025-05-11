@@ -48,6 +48,6 @@ def test_get_new_performances(db_session):
     assert len(performances) == 2711
 
 # test the count functions
-def test_get_player_count(db_sessions):
+def test_get_player_count(db_session):
     player_count = crud.get_player_count(db_session)
     assert player_count == 1018
