@@ -8,8 +8,10 @@ This project was built from examples from the book
 LEARNING:
 API
 
+Francisco Urra
+
 Tools:
 SQLite : create the fantacy sport database
-SQLAlchemy: use SQL queries and access data from database from python and store data in python structures 
-
-Francisco Urra
+SQLAlchemy: use SQL queries and access data from database from python and store data in python structures
+Python : code to read the database
+Pytest : test the code written in Python
