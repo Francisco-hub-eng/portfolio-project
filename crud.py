@@ -1,5 +1,5 @@
 """ SQLAlchemy Query Functions"""
-from sqlalchemy.orm import Sessions
+from sqlalchemy.orm import Session
 from sqlalchemy.orm import joinedload
 from datetime import date
 
@@ -38,8 +38,7 @@ def get_league(db: Session, league_id: int = None):
 
 def get_leagues(db: Session, skip: int = 0, limit: int = 100,
         min_last_changed_date: date = None, league_name: str = None):
-    query = db.query(models.League(
-        ).options(joinedload(models.League.teams))
+    query = db.query(models.League().options(joinedload(models.League.teams)))
     if min_last_changed_date:
         query = query.filter(
             models.League.last_changed_date >= min_last_changed_date)

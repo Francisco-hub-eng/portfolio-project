@@ -1,10 +1,10 @@
 """SQLAlchemy models"""
-from sqlalchemy import Column, ForeingKey, Integer, String, Float, Date
+from sqlalchemy import Column, ForeignKey, Integer, String, Float, Date
 from sqlalchemy.orm import relationship
 
 from database import Base
 
-class Player(base):
+class Player(Base):
     __tablename__= "player"
 
     player_id = Column(Integer, primary_key = True, index = True)
@@ -41,7 +41,7 @@ class League(Base):
 
     teams = relationship("Team", back_populates="league")
 
-class Team(base):
+class Team(Base):
     __tablename__ = "team"
 
     team_id = Column(Integer, primary_key=True, index=True)
@@ -50,7 +50,7 @@ class Team(base):
 
     league_id = Column(Integer, ForeignKey("league.league_id"))
 
-    league = relatinship("League", back_populates="teams")
+    league = relationship("League", back_populates="teams")
 
     players = relationship("Player", secondary = "team_player", back_populates = "teams")
 
