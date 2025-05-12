@@ -15,3 +15,7 @@ SQLite : create the fantacy sport database
 SQLAlchemy: use SQL queries and access data from database from python and store data in python structures
 Python : code to read the database
 Pytest : test the code written in Python
+Pydantic : to create schemas, validation library
+FastAPI : web framework to build the API
+HTTPX : HTTP client for Python
+Uvicorn : web server to run the API
