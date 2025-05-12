@@ -34,6 +34,14 @@ def read_players(skip : int = 0,
                                last_name=last_name)
     return players
 
+@app.get("/v0/players/{player_id}", response_model=schemas.Player)
+def read_player(player_id : int,
+                db: Session = Depends(get_db)):
+    player = crud.get_player(db, player_id = player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail = "Player not found")
+    return player
+
 @app.get("/v0/performances/",
          response_model=list[schemas.Performance])
 def read_performances(skip: int = 0,

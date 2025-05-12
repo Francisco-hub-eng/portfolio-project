@@ -38,7 +38,8 @@ def get_league(db: Session, league_id: int = None):
 
 def get_leagues(db: Session, skip: int = 0, limit: int = 100,
         min_last_changed_date: date = None, league_name: str = None):
-    query = db.query(models.League().options(joinedload(models.League.teams)))
+    query = db.query(models.League
+                     ).options(joinedload(models.League.teams))
     if min_last_changed_date:
         query = query.filter(
             models.League.last_changed_date >= min_last_changed_date)
@@ -51,7 +52,7 @@ def get_teams(db: Session, skip: int = 0, limit: int = 100,
     min_last_changed_date: date = None,
     team_name : str = None, league_id: int = None):
         
-    query.db.query(models.Team)
+    query = db.query(models.Team)
 
     if min_last_changed_date:
         query = query.filter(
