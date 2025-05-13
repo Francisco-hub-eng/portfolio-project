@@ -53,7 +53,7 @@ async def root():
          operation_id="v0_get_players",
          tags=["player"])
 def read_players(skip : int = Query(0, description = "The number of items to skip at the beginning of API call."),
-                 limit: int = 100,
+                 limit: int = Query(100, description= "The number of records to return after the skupped records."),
                  minimum_last_changed_date: date = None,
                  first_name: str = None,
                  last_name:str = None,
