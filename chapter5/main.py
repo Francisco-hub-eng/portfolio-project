@@ -18,7 +18,7 @@ Get information about all the SWC fantasy football leagues and the teams in them
 """
 
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlalchemy.orm import Session
 from datetime import date
 
@@ -42,6 +42,7 @@ def get_db():
 @app.get("/",
          summary="Check to see if the SWC fantasy football API is running",
          response_description= "API is running",
+         operation_id= "v0",
          tags=["analytics"])
 async def root():
     return {"message": "API health check successful"}
@@ -49,8 +50,9 @@ async def root():
 @app.get("/v0/players/", response_model=list[schemas.Player],
          summary = "Get all the SWC players that meet all the parameters you sent with the request",
          response_description= "all SWC players from query",
+         operation_id="v0_get_players",
          tags=["player"])
-def read_players(skip : int = 0,
+def read_players(skip : int = Query(0, description = "The number of items to skip at the beginning of API call."),
                  limit: int = 100,
                  minimum_last_changed_date: date = None,
                  first_name: str = None,
@@ -80,6 +82,7 @@ def read_player(player_id : int,
          response_model=list[schemas.Performance],
          summary = "Get all the weekly performances that meet the parameters you sent with your request",
          response_description= "Weekly performances",
+         operation_id= "v0_get_performances",
          tags=["scoring"])
 def read_performances(skip: int = 0,
                       limit: int = 100,
@@ -94,6 +97,7 @@ def read_performances(skip: int = 0,
 @app.get("/v0/leagues/{league_id}", response_model=schemas.League,
          summary = "Get one league by league id",
          response_description= "find league by league id",
+         operation_id="v0_get_leagues_by_league_id",
          tags=["membership"])
 def read_league(league_id: int, db: Session = Depends(get_db)):
     league = crud.get_league(db, league_id = league_id)
@@ -104,6 +108,7 @@ def read_league(league_id: int, db: Session = Depends(get_db)):
 @app.get("/v0/leagues/", response_model=list[schemas.League],
          summary = "Get all the SWC fantasy football leagues that match the parameters you send",
          response_description= "all leagues by query",
+         operation_id= "v0_get_leagues",
          tags=["membership"])
 def read_leagues(skip: int = 0,
                  limit: int = 100,
@@ -120,6 +125,7 @@ def read_leagues(skip: int = 0,
 @app.get("/v0/teams/", response_model=list[schemas.Team],
          summary = "Get all the SWC fantasy football teams that match the parameters you send",
          response_description= " all teams by query",
+         operation_id = "v0_get_teams",
          tags=["membership"])
 def read_teams(skip:int = 0,
                limit:int = 100,
@@ -138,6 +144,7 @@ def read_teams(skip:int = 0,
 @app.get("/v0/counts/", response_model=schemas.Counts,
          summary="Get counts of the number of leagues, teams, and players in the SWC fantasy football",
          response_description= "counts of leagues, teams and players",
+         operation_id = "v0_get_counts",
          tags=["analytics"])
 def get_count(db:Session=Depends(get_db)):
     counts = schemas.Counts(
