@@ -85,7 +85,7 @@ def read_player(player_id : int,
          operation_id= "v0_get_performances",
          tags=["scoring"])
 def read_performances(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
-                      limit: int = 100,
+                      limit: int = Query(100, description= "The number of records to return after the skupped records."),
                       minimum_last_changed_date : date = None,
                       db: Session = Depends(get_db)):
     performances = crud.get_performances(db,
@@ -111,7 +111,7 @@ def read_league(league_id: int, db: Session = Depends(get_db)):
          operation_id= "v0_get_leagues",
          tags=["membership"])
 def read_leagues(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
-                 limit: int = 100,
+                 limit: int = Query(100, description= "The number of records to return after the skupped records."),
                  minimum_last_changed_date : date = None,
                  league_name: str = None,
                  db: Session = Depends(get_db)):
@@ -128,7 +128,7 @@ def read_leagues(skip: int = Query(0, description = "The number of items to skip
          operation_id = "v0_get_teams",
          tags=["membership"])
 def read_teams(skip:int = Query(0, description = "The number of items to skip at the beginning of API call."),
-               limit:int = 100,
+               limit:int = Query(100, description= "The number of records to return after the skupped records."),
                minimum_last_changed_date: date = None,
                team_name: str = None,
                league_id: int = None,
