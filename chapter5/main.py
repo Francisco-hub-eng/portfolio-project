@@ -55,7 +55,7 @@ async def root():
 def read_players(skip : int = Query(0, description = "The number of items to skip at the beginning of API call."),
                  limit: int = Query(100, description= "The number of records to return after the skupped records."),
                  minimum_last_changed_date: date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
-                 first_name: str = None,
+                 first_name: str = Query(None, description= "The first name of the players to return"),
                  last_name:str = None,
                  db: Session = Depends(get_db)
 ):
