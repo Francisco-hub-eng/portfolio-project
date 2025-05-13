@@ -84,7 +84,7 @@ def read_player(player_id : int,
          response_description= "Weekly performances",
          operation_id= "v0_get_performances",
          tags=["scoring"])
-def read_performances(skip: int = 0,
+def read_performances(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
                       limit: int = 100,
                       minimum_last_changed_date : date = None,
                       db: Session = Depends(get_db)):
@@ -110,7 +110,7 @@ def read_league(league_id: int, db: Session = Depends(get_db)):
          response_description= "all leagues by query",
          operation_id= "v0_get_leagues",
          tags=["membership"])
-def read_leagues(skip: int = 0,
+def read_leagues(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
                  limit: int = 100,
                  minimum_last_changed_date : date = None,
                  league_name: str = None,
@@ -127,7 +127,7 @@ def read_leagues(skip: int = 0,
          response_description= " all teams by query",
          operation_id = "v0_get_teams",
          tags=["membership"])
-def read_teams(skip:int = 0,
+def read_teams(skip:int = Query(0, description = "The number of items to skip at the beginning of API call."),
                limit:int = 100,
                minimum_last_changed_date: date = None,
                team_name: str = None,
