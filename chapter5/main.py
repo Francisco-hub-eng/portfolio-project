@@ -99,7 +99,8 @@ def read_performances(skip: int = Query(0, description = "The number of items to
          response_description= "find league by league id",
          operation_id="v0_get_leagues_by_league_id",
          tags=["membership"])
-def read_league(league_id: int, db: Session = Depends(get_db)):
+def read_league(league_id: int, 
+                db: Session = Depends(get_db)):
     league = crud.get_league(db, league_id = league_id)
     if league is None:
         raise HTTPException(status_code=404, detail="League not found")
@@ -113,7 +114,7 @@ def read_league(league_id: int, db: Session = Depends(get_db)):
 def read_leagues(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
                  limit: int = Query(100, description= "The number of records to return after the skupped records."),
                  minimum_last_changed_date : date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
-                 league_name: str = None,
+                 league_name: str = Query(None, description="League name as string"),
                  db: Session = Depends(get_db)):
     leagues = crud.get_leagues(db,
                                skip=skip,
@@ -130,8 +131,8 @@ def read_leagues(skip: int = Query(0, description = "The number of items to skip
 def read_teams(skip:int = Query(0, description = "The number of items to skip at the beginning of API call."),
                limit:int = Query(100, description= "The number of records to return after the skupped records."),
                minimum_last_changed_date: date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
-               team_name: str = None,
-               league_id: int = None,
+               team_name: str = Query(None, description="team name as string"),
+               league_id: int = Query(None, description="league as integer id number"),
                db: Session = Depends(get_db)):
     teams = crud.get_teams(db,
                            skip=skip,
