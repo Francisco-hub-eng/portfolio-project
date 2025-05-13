@@ -40,6 +40,7 @@ def get_db():
         db.close()
 
 @app.get("/",
+         summary="Check to see if the SWC fantasy football API is running",
          tags=["analytics"])
 async def root():
     return {"message": "API health check successful"}
