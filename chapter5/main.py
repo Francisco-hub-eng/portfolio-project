@@ -46,6 +46,7 @@ async def root():
     return {"message": "API health check successful"}
 
 @app.get("/v0/players/", response_model=list[schemas.Player],
+         summary = "Get all the SWC players that meet all the parameters you sent with the request",
          tags=["player"])
 def read_players(skip : int = 0,
                  limit: int = 100,
@@ -75,6 +76,7 @@ def read_player(player_id : int,
 
 @app.get("/v0/performances/",
          response_model=list[schemas.Performance],
+         summary = "Get all the weekly performances that meet the parameters you sent with your request",
          tags=["scoring"])
 def read_performances(skip: int = 0,
                       limit: int = 100,
@@ -87,6 +89,7 @@ def read_performances(skip: int = 0,
     return performances
 
 @app.get("/v0/leagues/{league_id}", response_model=schemas.League,
+         summary = "Get one league by league id",
          tags=["membership"])
 def read_league(league_id: int, db: Session = Depends(get_db)):
     league = crud.get_league(db, league_id = league_id)
@@ -95,6 +98,7 @@ def read_league(league_id: int, db: Session = Depends(get_db)):
     return league
 
 @app.get("/v0/leagues/", response_model=list[schemas.League],
+         summary = "Get all the SWC fantasy football leagues that match the parameters you send",
          tags=["membership"])
 def read_leagues(skip: int = 0,
                  limit: int = 100,
@@ -109,6 +113,7 @@ def read_leagues(skip: int = 0,
     return leagues
 
 @app.get("/v0/teams/", response_model=list[schemas.Team],
+         summary = "Get all the SWC fantasy football teams that match the parameters you send",
          tags=["membership"])
 def read_teams(skip:int = 0,
                limit:int = 100,
@@ -125,6 +130,7 @@ def read_teams(skip:int = 0,
     return teams
 
 @app.get("/v0/counts/", response_model=schemas.Counts,
+         summary="Get counts of the number of leagues, teams, and players in the SWC fantasy football",
          tags=["analytics"])
 def get_count(db:Session=Depends(get_db)):
     counts = schemas.Counts(
