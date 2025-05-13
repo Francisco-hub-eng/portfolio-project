@@ -84,4 +84,4 @@ Check back for the Python SDK for our API
 - FastAPI : web framework to build the API
 - HTTPX : HTTP client for Python
 - Uvicorn : web server to run the API
-- FastAPI 
+- FastAPI documentation: Swagger UI (docs), Redoc (redoc)
