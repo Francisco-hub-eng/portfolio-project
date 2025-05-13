@@ -86,7 +86,7 @@ def read_player(player_id : int,
          tags=["scoring"])
 def read_performances(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
                       limit: int = Query(100, description= "The number of records to return after the skupped records."),
-                      minimum_last_changed_date : date = None,
+                      minimum_last_changed_date : date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
                       db: Session = Depends(get_db)):
     performances = crud.get_performances(db,
                                          skip=skip,
@@ -112,7 +112,7 @@ def read_league(league_id: int, db: Session = Depends(get_db)):
          tags=["membership"])
 def read_leagues(skip: int = Query(0, description = "The number of items to skip at the beginning of API call."),
                  limit: int = Query(100, description= "The number of records to return after the skupped records."),
-                 minimum_last_changed_date : date = None,
+                 minimum_last_changed_date : date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
                  league_name: str = None,
                  db: Session = Depends(get_db)):
     leagues = crud.get_leagues(db,
@@ -129,7 +129,7 @@ def read_leagues(skip: int = Query(0, description = "The number of items to skip
          tags=["membership"])
 def read_teams(skip:int = Query(0, description = "The number of items to skip at the beginning of API call."),
                limit:int = Query(100, description= "The number of records to return after the skupped records."),
-               minimum_last_changed_date: date = None,
+               minimum_last_changed_date: date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
                team_name: str = None,
                league_id: int = None,
                db: Session = Depends(get_db)):
