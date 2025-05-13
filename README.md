@@ -89,3 +89,6 @@ Check back for the Python SDK for our API
 - HTTPX : HTTP client for Python
 - Uvicorn : web server to run the API
 - FastAPI documentation: Swagger UI (docs), Redoc (redoc)
+- Docker : container for the API, can be used to be deployed in AWS
+- Render : cloud platform to deploy the API
+- AWS : cloud platform to deploy the API
