@@ -16,4 +16,4 @@ COPY *.py /code/
 COPY *.db /code/
 
 # Launch the Uvicorn web server and run the application
-CMD ["Uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
