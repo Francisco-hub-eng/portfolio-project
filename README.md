@@ -26,9 +26,9 @@ Thanks for using the SportsWorldCentral API. This is your one-stop shop for acce
 ## Public API
 Our API is hosted at [https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/](https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/)
 
-Ypu can access the interactive documentation at https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev//docs(https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev//docs).
+Ypu can access the interactive documentation at [https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/docs](https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/docs).
 
-You can view the OpenAPI Specification (OAS) file at https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/openapi.json(https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/openapi.json)
+You can view the OpenAPI Specification (OAS) file at [https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/openapi.json](https://miniature-garbanzo-75x6q4rgvqpfxj7q-8000.app.github.dev/openapi.json)
 
 We'll deploying our application soon. Check back for the public API address.
 
