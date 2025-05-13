@@ -56,7 +56,7 @@ def read_players(skip : int = Query(0, description = "The number of items to ski
                  limit: int = Query(100, description= "The number of records to return after the skupped records."),
                  minimum_last_changed_date: date = Query(None, description= "The minimum date of change that you want to return records. Exclude any records changed before this."),
                  first_name: str = Query(None, description= "The first name of the players to return"),
-                 last_name:str = None,
+                 last_name:str = Query(None, description= "The last name of the players to return"),
                  db: Session = Depends(get_db)
 ):
     players = crud.get_players(db, skip=skip, limit = limit,
