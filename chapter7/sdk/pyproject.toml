@@ -9,7 +9,7 @@ authors = [
     {name = "Francisco Urra"}
 ]
 description = "Example SDK from Hands-On API Book for AI and Data Science"
-requires-python ">=3.10"
+requires-python = ">=3.10"
 classifiers = [
     "Development status :: 3 - Alpha",
     "Programming Language :: Python :: 3",
