@@ -86,7 +86,7 @@ Check back for the Python SDK for our API
 - Pytest : test the code written in Python
 - Pydantic : to create schemas, validation library
 - FastAPI : web framework to build the API
-- HTTPX : HTTP client for Python
+- HTTPX : HTTP client for Python, allow interaction with the API
 - Uvicorn : web server to run the API
 - FastAPI documentation: Swagger UI (docs), Redoc (redoc)
 - Docker : container for the API, can be used to be deployed in AWS
