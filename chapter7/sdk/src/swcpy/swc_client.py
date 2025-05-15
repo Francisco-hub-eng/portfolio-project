@@ -54,7 +54,7 @@ class SWCClient:
 
         if self.backoff:
             self.get_url = backoff.on_exception(
-                exception(httpx.RequestError, httpx.HTTPStatusError),
+                Exception(httpx.RequestError, httpx.HTTPStatusError),
                 wait_gen = backoff.expo,
                 max_time = self.backoff_max_time,
                 jitter = backoff.random_jitter,
@@ -76,3 +76,26 @@ class SWCClient:
     #    # make the API call
     #    with httpx.Client(base_url=self.swc_base_url) as client:
     #        return client.get("/")
+
+        def call_api(
+            api_endpoint: str,
+            api_params: dict = None       
+        ) -> httpx.Response:
+            """ Makes API call and logs errors."""
+
+            if api_params:
+                api_params = {key: val for key, val in api_params.items() if val is not None}
+            try:
+                with httpx.Client(base_url=self.swc_base_url) as client:
+                    logger.debug(f"base_url: {self.swc_base_url}, api_endpoint: {api_endpoint}, api_params :{api_params}")
+                    response = client.get(api_endpoint, params=api_params)
+                    logger.debug(f"Response JSON: {response.json()}")
+                    return response
+            except httpx.HTTPStatusError as e:
+                logger.error(
+                    f"HTTP statos error ocurred: {e.response.status_code}"
+                )
+                raise
+            except httpx.RequestError as e:
+                logger.error(f"Request error occurred: {str(e)}")
+                raise
