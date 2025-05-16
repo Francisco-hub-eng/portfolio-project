@@ -72,9 +72,7 @@ class SWCClient:
         
         logger.debug(f"Bulk file dictionary: {self.BULK_FILE_NAMES}")
 
-        return client.get("/")
-
-    def call_api(
+    def call_api( self,
             api_endpoint: str,
             api_params: dict = None       
         ) -> httpx.Response:
@@ -96,6 +94,7 @@ class SWCClient:
             except httpx.RequestError as e:
                 logger.error(f"Request error occurred: {str(e)}")
                 raise
+
     def get_health_check(self) -> httpx.Response:
         """Checks if API is running and healthy.
         
