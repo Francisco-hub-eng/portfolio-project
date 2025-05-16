@@ -27,4 +27,15 @@ def test_list_leagues():
     # Assert that 5 League objects are returned
     assert len(leagues_response) == 5
 
-def test_
+def test_bulk_player_file_parquet():
+    """Tests bulk player download through SDK - Parquet"""
+
+    config = SWCConfig(bulk_file_format="parquet")
+    client = SWCClient(config)
+
+    player_file_parquet = client.get_bulk_player_file()
+
+    # Assert the file has the correct number of records (including header)
+    player_table = pq.read_table(BytesIO(player_file_parquet))
+    player_df = player_table.to_pandas()
+    assert len(player_df) == 1018
