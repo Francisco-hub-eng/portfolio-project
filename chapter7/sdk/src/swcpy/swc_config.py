@@ -19,7 +19,7 @@ class SWCConfig:
             swc_base_url : str = None,
             backoff: bool = True,
             backoff_max_time : int = 30,
-            bulk_file_format : str = "csv",
+            bulk_file_format : str = "csv"
     ) :
         """ Constructor for configuration class.
         

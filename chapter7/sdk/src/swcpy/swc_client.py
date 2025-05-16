@@ -54,8 +54,8 @@ class SWCClient:
 
         if self.backoff:
             self.get_url = backoff.on_exception(
-                Exception(httpx.RequestError, httpx.HTTPStatusError),
                 wait_gen = backoff.expo,
+                exception=(httpx.RequestError, httpx.HTTPStatusError),
                 max_time = self.backoff_max_time,
                 jitter = backoff.random_jitter,
             )(self.call_api)
