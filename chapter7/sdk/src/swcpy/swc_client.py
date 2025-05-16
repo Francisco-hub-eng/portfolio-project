@@ -137,3 +137,16 @@ class SWCClient:
 
         response = self.call_api(self.LIST_LEAGUES_ENDPOINT, params)
         return [League(**league) for league in response.json()]
+    
+    def get_bulk_player_file(self) -> bytes:
+        """Returns a bulk file with player data"""
+
+        logger.debug("Entered get bulk player file")
+
+        player_file_path = self.BULK_FILE_BASE_URL + self.BULK_FILE_NAMES["players"]
+
+        response = httpx.get(player_file_path, follow_redirects=True)
+
+        if response.status_code == 200:
+            logger.debug("File downloaded soccessfully")
+            return response.content
