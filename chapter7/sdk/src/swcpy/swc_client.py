@@ -3,7 +3,7 @@ import swcpy.swc_config as config
 from .schemas import League, Team, Player, Performance
 from typing import List
 import backoff
-import logging
+import logging 
 logger = logging.getLogger(__name__)
 
 
@@ -60,9 +60,9 @@ class SWCClient:
                 jitter = backoff.random_jitter,
             )(self.call_api)
 
-        if self.bulk_file_format.lower() == "paquet" :
+        if self.bulk_file_format.lower() == "parquet" :
             self.BULK_FILE_NAMES = {
-                key : value + ".paquet" for key, value in self.BULK_FILE_NAMES.items()
+                key : value + ".parquet" for key, value in self.BULK_FILE_NAMES.items()
             }
         else:
             self.BULK_FILE_NAMES = {
